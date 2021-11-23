@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:smartMCServer.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="Blue">
+             Background="DarkBlue">
     <Grid>
             
     </Grid>

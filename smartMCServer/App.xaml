@@ -1,0 +1,50 @@
+﻿<Application x:Class="smartMCServer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:smartMCServer"
+             xmlns:viewModel="clr-namespace:smartMCServer.MVVM.ViewModel"
+             xmlns:view="clr-namespace:smartMCServer.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TitleBarButtonsTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ConsoleViewModel}">
+                <view:DiscoveryView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:PlayersViewModel}">
+                <view:PlayersView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:WorldsViewModel}">
+                <view:WorldsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:BackupsViewModel}">
+                <view:BackupsView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:TaskSchedulerViewModel}">
+                <view:TaskSchedulerView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ServerConfigViewModel}">
+                <view:ServerConfigView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SMCSSettingsViewModel}">
+                <view:SMCSSettingsView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

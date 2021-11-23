@@ -1,0 +1,190 @@
+﻿<Window x:Class="smartMCServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:smartMCServer"
+        xmlns:viewModel="clr-namespace:smartMCServer.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="SmartMCServer" Height="720" Width="1280"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="34" />
+    </WindowChrome.WindowChrome>
+
+    <!--Title bar button commands-->
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed_Close" />
+        <CommandBinding Command="{x:Static SystemCommands.MaximizeWindowCommand}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed_Maximize" />
+        <CommandBinding Command="{x:Static SystemCommands.MinimizeWindowCommand}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed_Minimize" />
+        <CommandBinding Command="{x:Static SystemCommands.RestoreWindowCommand}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed_Restore" />
+    </Window.CommandBindings>
+
+    <Border x:Name="MainWindowBorder" BorderThickness="0" Background ="#272537" CornerRadius="0">
+        <Grid x:Name="parentContainer"  Background ="Transparent">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="Auto"/>
+                <RowDefinition Height ="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Window chrome-->
+            <Grid Grid.Row="0" Height="40" Background="#383945">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <!--App icon-->
+                    <Image Source="/Images/AppIcon.png" Width="18" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="SMCS" FontFamily="Fonts/#Dosis" FontWeight="Bold" Margin="0 12 0 0" Foreground="White"/>
+                </StackPanel>
+
+                <!--Caption buttons-->
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Style="{StaticResource MinimizeButtonStyle}" WindowChrome.IsHitTestVisibleInChrome="True" ToolTip="Minimize"
+                            Command="{x:Static SystemCommands.MinimizeWindowCommand}"/>
+                    <Button x:Name="RestoreButton" Visibility="Collapsed" Style="{StaticResource RestoreButtonStyle}" 
+                            Command="{x:Static SystemCommands.RestoreWindowCommand}" WindowChrome.IsHitTestVisibleInChrome="True" ToolTip="Restore"/>
+                    <Button x:Name="MaximizeButton" Visibility="Visible" Style="{StaticResource MaximizeButtonStyle}" 
+                            Command="{x:Static SystemCommands.MaximizeWindowCommand}" WindowChrome.IsHitTestVisibleInChrome="True" ToolTip="Maximize" />
+                    <Button Style="{StaticResource CloseButtonStyle}" WindowChrome.IsHitTestVisibleInChrome="True" ToolTip="Close"
+                            Command="{x:Static SystemCommands.CloseWindowCommand}"/>
+                </StackPanel>
+
+            </Grid>
+
+            <!--App content-->
+            <Grid Grid.Row="1" x:Name="AppArea">
+                <Border>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="SmartMCServer"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontFamily="Fonts/#Dosis"
+                       FontSize="25"
+                       FontWeight="Bold"
+                       Margin="0, 17, 0, 0"/>
+
+                        <StackPanel Grid.Row="1">
+
+                            <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}"
+                             HorizontalAlignment="Center"
+                             FontFamily="Fonts/#Dosis"
+                             Width="250"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
+
+                            <RadioButton Content="Console"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}"
+                             HorizontalAlignment="Center"
+                             FontFamily="Fonts/#Dosis"
+                             Width="250"
+                             Command="{Binding ConsoleViewCommand}"/>
+
+                            <RadioButton Content="Players"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}"
+                             HorizontalAlignment="Center"
+                             FontFamily="Fonts/#Dosis"
+                             Width="250"
+                             Command="{Binding PlayersViewCommand}"/>
+
+                            <RadioButton Content="Worlds"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}"
+                             HorizontalAlignment="Center"
+                             FontFamily="Fonts/#Dosis"
+                             Width="250"
+                             Command="{Binding WorldsViewCommand}"/>
+
+                            <RadioButton Content="Backups"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}"
+                             HorizontalAlignment="Center"
+                             FontFamily="Fonts/#Dosis"
+                             Width="250"
+                             Command="{Binding BackupsViewCommand}"/>
+
+                            <RadioButton Content="Task Scheduler"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}"
+                             HorizontalAlignment="Center"
+                             FontFamily="Fonts/#Dosis"
+                             Width="250"
+                             Command="{Binding TaskSchedulerViewCommand}"/>
+
+                            <RadioButton Content="Server Config"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}"
+                             HorizontalAlignment="Center"
+                             FontFamily="Fonts/#Dosis"
+                             Width="250"
+                             Command="{Binding ServerConfigViewCommand}"/>
+
+                            <RadioButton Content="SMCS Settings"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}"
+                             HorizontalAlignment="Center"
+                             FontFamily="Fonts/#Dosis"
+                             Width="250"
+                             Command="{Binding SMCSSettingsViewCommand}"/>
+
+                        </StackPanel>
+
+                        <TextBox Width="250"
+                     Height="40"
+                     HorizontalAlignment="Left"
+                     Margin="5,5,0,0"
+                     Grid.Column="1"
+                     Style="{StaticResource ModernTextBox}"/>
+
+                        <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+
+                    </Grid>
+
+                </Border>
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>
